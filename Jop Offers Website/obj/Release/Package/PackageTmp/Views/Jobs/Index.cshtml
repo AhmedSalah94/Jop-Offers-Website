@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Jop_Offers_Website.Models.Job>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>قائمة الوظائف</h2>
+
+<p>
+    @Html.ActionLink("اضافة وظيفة جديدة", "Create")
+</p>
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.JobContent).ToString()))
+            @*عشان استخدمنا ckeditor
+        للبروبرتى دي ومش عايزين تاجات ال اتش تي ام ال تظهر فى الاوتبوت*@
+        </td>
+        <td>
+            <img src="~/Uploads/@Html.DisplayFor(Model=>item.JobImage)"
+                 class="thumbnail" style="width:48px; height:48px" />
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.id }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.id }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

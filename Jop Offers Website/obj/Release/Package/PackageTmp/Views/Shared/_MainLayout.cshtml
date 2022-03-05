@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=divice-width , initial scale=1" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<body>
+
+    @*NavBar*@
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsing" data-toggle="collapse"
+                        data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="~/Home" class="navbar-brand">
+                    <img src="~/Images/logo.png" class="logo-size" />
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/Home">
+                            <i class="glyphicon glyphicon-home"></i>
+                            الرئيسية
+                        </a>
+                    </li>
+
+
+
+                    <li>
+                        <a href="~/Home/About">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            حول الموقع
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/Home/Contact">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            اتصل بنا
+                        </a>
+                    </li>
+
+                    <li>
+                        @using (Html.BeginForm("search", "home", FormMethod.Post))
+                        {
+                            <input type="text" name="SearchName"
+                                   id="SearchName" placeholder="ابحث هنا.." />
+                            //اول ماتدوس انتر فى مربع البحث هيتعمل سابميت على طول يعنى من غير بوتون عادى
+                            //لما تدوس انتر هينفذالاكشن سيرش التى تعمل فى وضع البوست زي ماقولتله في سطر 53
+                        }
+                    </li>
+
+                </ul>
+
+                @*partial login *@
+                @Html.Partial("_Login")
+
+            </div>
+        </div>
+
+
+    </nav>
+
+
+
+    <div class="container">
+        <div class="row" style="min-height:435px">
+            @RenderBody()
+        </div>
+    </div>
+
+
+    @* Footer*@
+
+    <footer class="myfooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-question-sign"></i>
+                        من نحن؟
+                    </h3>
+                    <p>
+                        في عام 2022 تأسس موقع التوظيف هذا .. والذي يسعى إلى جعل العالم أكثر ترابطًا من خلال منح الأشخاص القدرة على التقديم للوظائف المختلفة بشكل مريح دون حواجز أو عقبات
+
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-globe"></i>
+                        روابط هامة
+                    </h3>
+                    <ul>
+                        <li> <a href="#"> وظائف للقطاع العام </a> </li>
+                        <li> <a href="#"> وظائف للقطاع الخاص </a> </li>
+                        <li> <a href="#"> وظائف للقطاع خارج البلاد </a> </li>
+                        <li> <a href="#"> وظائف متنوعة </a> </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-envelope"></i>
+                        تواصل معنا
+                    </h3>
+                    <ul>
+                        <li> <a href="#"> صفحتنا على الفيسبوك </a> </li>
+                        <li> <a href="#"> تابعنا على تويتر </a> </li>
+                        <li> <a href="#"> شاهدنا على اليوتيوب </a> </li>
+                        <li> <a href="#"> اترك لنا رسالة </a> </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="subfooter">
+            <span> جميع الحقوق محفوظة لموقع التوظيف - 2022 </span>
+        </div>
+
+    </footer>
+
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
